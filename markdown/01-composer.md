@@ -41,8 +41,9 @@ Composer installe les librairies et nous fournit un autoloader dans le fichier `
 Quand vous clonerez une application depuis github ou autre service de ce type, cette dernière commande sera utilisée.
 
 
-#
-#
+---
+---
+
 
 La spécification de version `1.12.3` suit le système **SemVer (Versionnage Sémantique)**. Chaque chiffre a une signification spécifique :
 
@@ -91,10 +92,8 @@ Ce système permet aux développeurs de :
  3. Prévoir les risques liés à une mise à jour.
 
 En résumé, chaque partie de la version donne des informations précieuses sur les changements introduits !
-
-
-#
-#
+---
+---
 
 Dans les fichiers `composer.json`, les symboles mathématiques placés devant les numéros de version (comme `^`, `~`, `>=`, `<=`) indiquent à Composer quelles versions d'une bibliothèque peuvent être installées. 
 
