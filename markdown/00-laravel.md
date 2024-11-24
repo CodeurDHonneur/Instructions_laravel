@@ -13,5 +13,17 @@ Laravel reste le framework PHP le plus utilisé au niveau mondial. En France, Sy
 #### Facilité d'utilisation du framework
 Ce framework est plus facile à 'prendre en main' que symfony, il est aussi plus permissif au niveau du code. Ce n'est pas une raison pour en profiter et écrire du code 'qui marche' sans y réfléchir plus que ça.  
 La qualité du code ne vient pas d'un framework, mais du développeur.  
+
+### Compatibilité avec PHP
+
+![Compatibilité des versions de laravel avec PHP](../img/lara-compatibilite-php.PNG)
+
+Source : [site officiel Laravel](https://laravel.com/docs/11.x/releases)
 ---
+
+
+
+
+
+
 [La documentation](https://laravel.com/docs)
