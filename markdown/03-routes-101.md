@@ -63,6 +63,9 @@ Route::get('/contact-us', function () {
 ```
 Si vous cliquez maintenant sur ce lien, vous obtiendrez une page d'erreur qu'on vous encourage à lire. Bien souvent, le message d'erreur qu'on obtient nous décrit exactement le bug rencontré.
 Ici, c'est très simple, il nous manque un fichier `contact.blade.php` dans le dossier `layouts`. A vous de le créer. 
+
+
+
 #### Une brève introduction à blade
 Blade est un moteur de template, il offre une quantité d'aide pour le développement.
 Dans le fichier `contact.blade.php`, écrivez le lignes suivantes :
