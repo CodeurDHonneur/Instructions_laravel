@@ -10,6 +10,7 @@ APP_KEY=base64:Cg1VflIhgKGXmSBdxJCOpwL2ef8apesUPte91bug6x8= # clé servant à ch
 APP_DEBUG=true # Est on en train de débugguer ?
 APP_URL=http://localhost
 
+
 # La section ci-dessous se passe de commentaires.
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -18,6 +19,9 @@ DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=
 ```
+
+La clé `APP_KEY` est essentielle pour la sécurité de votre application Laravel. Elle est utilisée pour chiffrer des données sensibles et garantir que les informations de votre application sont protégées contre les accès non autorisés. Il est crucial de la garder secrète et de ne jamais la partager publiquement. 
+
 Lorsque vous clonerez une application laravel, assurez-vous que le fichier `.env.example` est présent et renommer le `.env`, puis exécuter la commande suivante pour générer la clé de l'application, sans celle-ci, rien ne fonctionnera
 ```bash
 php artisan key:generate
