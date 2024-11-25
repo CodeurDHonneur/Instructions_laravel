@@ -92,6 +92,8 @@ public function profile()
 ```
 À vous de créer la classe `Profile`, et d'y mettre sa relation par rapport à l'utilisateur.
 On y met rien d'autre pour l'instant, il nous manque quelques notions plus complexes pour coder ça proprement.
+
+En savoir plus sur les relations entre les différentes tables : [Site officiel de Laravel](https://laravel.com/docs/11.x/eloquent-relationships)
 ---
 Avec tout ce qu'on a vu depuis le début, on est prêt à faire évoluer notre application.
 Votre premier exercice pratique vous attend.
