@@ -47,9 +47,9 @@ public function show(Article $article)
 }
 ```
 Et c'est tout ! 😊  
-Laravel va automatiquement chercher la resource correspondante en se servant des noms et de l'ID passée en paramètre dans le lien. Si l'article c'existe pas, une erreur '404' est retournée.
+Laravel va automatiquement chercher la resource correspondante en se servant des noms et de l'ID passée en paramètre dans le lien. Si l'article n'existe pas, une erreur '404' est retournée.
 Ceci fonctionne entre autres grâce à la méthode `getRouteKeyName()` qui retourne 'id' par défaut.
-Si on veut changer ce comportement on peut surcharger cette méthode dans le modèle :
+Si on veut changer ce comportement on peut surcharger (modifie le comportement par défaut) cette méthode dans le modèle :
 ```php
 public function getRouteKeyName()
 {
