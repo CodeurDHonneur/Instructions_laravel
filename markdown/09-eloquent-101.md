@@ -6,7 +6,7 @@ Démarrez `tinker` et tester ces lignes :
 ```php
 User::all();
 ```
-Laravel retourne automatiquement les résultats sous forme de collection `eloquent`, quin offre de méthodes pour travailler et qui peut être itéré comme un tableau classique  
+Laravel retourne automatiquement les résultats sous forme de collection `eloquent`, qui offre de méthodes pour travailler et qui peut être itéré comme un tableau classique  
 Si la requête ne retourne rien, on obtiendra une collection vide.    
 ##### Select where
 ```php
