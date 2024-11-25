@@ -34,15 +34,15 @@ class PagesController extends Controller
 Ce code se passe de commentaires, la méthode `view()` ira chercher automatiquement les fichiers  
 
 Dans le fichier `web.php`, modifions les routes pour utiliser les contrôleurs :
-Dans ce cours, nous allons utiliser laravel 8, mais nous avons choisi de vous montrer également la syntaxe pour les applications tournant sous les versions de laravel avant celle-ci.  
+Dans ce cours, nous allons utiliser laravel 11, mais nous avons choisi de vous montrer également la syntaxe pour les applications tournant sous les versions de laravel avant celle-ci.  
 Jusqu'à `laravel 7` :
 ```php
 Route::get('/', 'PagesController@index');
 Route::get('/contact-us', 'PagesController@contact');
 ```
 On passe en deuxième argument le nom du contrôleur et la méthode qu'on veut appeler séparé par le `@`.  
-Nous utiliserons la syntaxe suivante :  
-`laravel 8`
+Nous utiliserons la syntaxe suivante valable depuis
+`laravel 8` :
 ```php
 use App\Http\Controllers\PagesController;
 
