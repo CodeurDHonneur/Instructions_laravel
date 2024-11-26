@@ -104,6 +104,28 @@ public function show($id)
     return view('articles.show', compact('article'));
 }
 ```
+
+### Et si on expliquait une peu ce code 😅😅😅 
+
+1. **Article::with('user') :**
+
+  * `with('user')` : Cela indique que nous chargeons la relation user associée à l'article.
+  * `user` est une relation définie dans le modèle `Article` qui associe chaque article à un utilisateur (l'auteur de l'article). Par défaut, cela chargera la colonne `user_id` dans la table articles pour trouver l'utilisateur correspondant dans la table `users`. Ce type de relation est défini par une méthode belongsTo dans le modèle `Article`.
+  * En utilisant `with('user')`, vous effectuez ce qu'on appelle **l'éager loading** (chargement anticipé). Cela signifie que l'utilisateur lié à l'article sera récupéré en même temps que l'article, ce qui permet d'éviter des requêtes supplémentaires lorsque vous accédez à la relation `user` par la suite.          
+
+2. **with(['comments' => function ($query) { $query->with('user'); }]) :**
+
+  * `with('comments')` : Cela charge la relation `comments` associée à l'article. Un article peut avoir plusieurs commentaires, donc cette relation est définie dans le modèle `Article` par une méthode `hasMany`.
+  * `function ($query) { $query->with('user'); }` : Ceci est une **fonction de closure** qui permet de spécifier des options supplémentaires lors du chargement des commentaires. Dans ce cas, la closure permet de charger, pour chaque commentaire, la relation `user` associée.
+    * `$query->with('user')` : Ici, `with('user')` est utilisé pour charger également l'utilisateur qui a écrit chaque commentaire (un commentaire est associé à un utilisateur via une relation `belongsTo` dans le modèle `Comment`).
+
+3. **findOrFail($id) :**
+
+  * `findOrFail($id)` : Cette méthode récupère un article spécifique en fonction de son identifiant (`$id`). Si aucun article avec cet identifiant n'est trouvé, Laravel générera une exception `ModelNotFoundException`, ce qui entraînera une erreur 404 automatiquement.
+  * Cela signifie que l'article avec l'ID passé en paramètre doit exister, sinon l'exécution du programme s'arrêtera avec une erreur.
+
+
+
 `routes/web.php`
 ```php
 Route::get('/articles/{id}', [ArticlesController::class, 'show']);
@@ -139,4 +161,6 @@ $article = Article::with(['comments' => function ($query) {
     $query->with('user');
 }])->findOrFail($id);
 ```
-Maintenant votre deuxième exercice.
+```php
+//A compléter 
+```
