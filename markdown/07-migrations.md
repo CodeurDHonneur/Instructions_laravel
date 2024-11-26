@@ -226,10 +226,10 @@ Les articles :
 public function definition()
 {
     return [
-        'title' => $this->faker->sentence(15), // on veut 15 mots
-        'body' => $this->faker->paragraph(50), // on veut 50 phrases
+        'title' => fake()->sentence(15), // on veut 15 mots
+        'body' => fake()->paragraph(50), // on veut 50 phrases
         'user_id' => 1,
-        'image' => $this->faker->image('public/images'),
+        'image' => fake()->image('public/images'),
     ];
 }
 ```
@@ -240,7 +240,7 @@ Maintenant, les commentaires :
 public function definition()
 {
     return [
-        'comment' => $this->faker->text(50),
+        'comment' => fake()->text(50),
         'user_id' => 2,
         'article_id' => 2,
     ];
