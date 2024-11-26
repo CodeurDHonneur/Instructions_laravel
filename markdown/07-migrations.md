@@ -200,7 +200,7 @@ Une autre convention laravel est de nommer les clés étrangères `table_id`, ou
 Quand on verra les modèles et les relations `eloquent`, on verra que laravel recherche automatiquement les noms sous cette forme. 
 
 #### Factory
-Maintenant qu'on a notre BDD, on a besoin de données, pour en créer, laravel est fourni avec une librairie appelée `faker` qui permet de générer des fausses données et de les enregistrer par la suite en BDD.
+Maintenant qu'on a notre BDD, on a besoin de données. Pour en créer, laravel est fourni avec une librairie appelée `faker` qui permet de générer des fausses données et de les enregistrer par la suite en BDD.
 Dans le dossier `database/factory`, un exemple nous est fourni pour générer des utilisateurs, modifions le pour y ajouter le champ `admin` que nous avons créé plus tôt.  
 Attention, ici nous utilisons la syntaxe `laravel 8`, ou la génération de données se fait avec des classes, avant laravel 8, c'était des fonctions, vous n'aurez aucun mal à vous y retrouver quand vous devrez gérer ce type de code.
 ```php
