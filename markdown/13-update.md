@@ -9,7 +9,7 @@ La mise à jour est également très facile.
 
 Dans le fichier `articles/show.blade.php`, ajoutez un lien sur la page comme ceci :
 ```blade
-<a href="/article/{{ $article->id }}/edit">Éditer l'article</a
+<a href="/article/{{ $article->id }}/edit">Éditer l'article</a>
 ```
 Ajoutez une route :
 
