@@ -3,8 +3,6 @@
 Jusqu'à maintenant, nous avons vu plusieurs techniques pour lire la BDD, il est temps de créer des formulaires et de les poster.
 
 - Créez un fichier `articles/create.blade.php`. qui comporte le formulaire (method="POST" action="articles/create" enctype="multipart/form-data") avec les champs du formulaire nécessaire pour créer un article. N'oubliez pas la section titre.
-
-- Incluez le fichier `partials/article-form.blade.php` dans la vue `create`.
 - Faites une route dans le fichier `web.php`.
 - Créer l'action correspondante dans le contrôleur `ArticlesController`, la méthode devra s'appeler `create`.
 - Créer le lien dans le fichier `layouts/master.blade.php`.
