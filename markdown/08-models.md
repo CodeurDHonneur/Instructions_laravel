@@ -68,7 +68,7 @@ class ArticleFactory extends Factory
             'user_id' => function () {
                 return User::inRandomOrder()->first()->id;
             },
-            'image' => fake()->image('public/images'), //Prenez la peine de créez un dossier 'images' dans 'public'
+            'image' => fake()->image('public/images'), //Prenez la peine de créer un dossier 'images' dans 'public'
         ];
     }
 }
