@@ -68,7 +68,7 @@ class ArticleFactory extends Factory
             'user_id' => function () {
                 return User::inRandomOrder()->first()->id;
             },
-            'image' => fake()->image('public/images'),
+            'image' => fake()->image('public/images'), //Prenez la peine de créez un dossier 'images' dans 'public'
         ];
     }
 }
@@ -231,7 +231,7 @@ class ArticleFactory extends Factory
             'user_id' => function () {
                 return User::inRandomOrder()->first()->id;
             },
-            'image' => $imageFaker->image(public_path("images"))
+            'image' => $imageFaker->image(public_path("images")) 
            
         ];
     }
