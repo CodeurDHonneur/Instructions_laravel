@@ -2,9 +2,9 @@
 
 Jusqu'à maintenant, nous avons vu plusieurs techniques pour lire la BDD, il est temps de créer des formulaires et de les poster.
 
-- Créez un fichier `articles/create.blade.php`. qui comporte le formulaire (method="POST" action="articles/create" enctype="multipart/form-data"). N'oubliez pas la section titre.
-- Créez un fichier `partials/article-form.blade.php` aui contient les champs du formulaire nécessaire pour créer un article.
-- Incluez le fichier `partials` dans la vue `create`.
+- Créez un fichier `articles/create.blade.php`. qui comporte le formulaire (method="POST" action="articles/create" enctype="multipart/form-data") avec les champs du formulaire nécessaire pour créer un article. N'oubliez pas la section titre.
+
+- Incluez le fichier `partials/article-form.blade.php` dans la vue `create`.
 - Faites une route dans le fichier `web.php`.
 - Créer l'action correspondante dans le contrôleur `ArticlesController`, la méthode devra s'appeler `create`.
 - Créer le lien dans le fichier `layouts/master.blade.php`.
@@ -19,6 +19,9 @@ Dans les contrôleurs, La communauté laravel utilise ces noms de méthodes pour
 - `update` pour mettre à jour une resource.
 - `destroy` pour effacer une resource.
 
+* La méthode `edit` est généralement utilisée pour afficher le formulaire d'édition d'une ressource existante. Elle permet à l'utilisateur de voir un formulaire pré-rempli avec les données actuelles de la ressource qu'il souhaite modifier.
+
+* La méthode `update` est utilisée pour mettre à jour une ressource existante avec les nouvelles données envoyées par le formulaire d'édition. Elle prend les informations modifiées, les valide, puis les enregistre dans la base de données.
 ---
 Remplissez et envoyer le formulaire, et admirez l'erreur que vous allez obtenir.
 Nous n'avons pas de routes, ni de méthodes pour ce formulaire.
@@ -60,25 +63,27 @@ use App\Models\User;
 
 public function store(Request $request)
 {
-    // vérification des permissions plus tard
-    $user = User::find(1);
-    $request['user_id'] = $user->id;
+      // vérification des permissions plus tard
+      $user = User::find(1);
+      $request['user_id'] = $user->id;
 
-    $this->validate($request, [
-        'title' => 'required|string',
-        'body' => 'required|string',
-        'user_id' => 'required|numeric|exists:users,id',
-    ]);
-    
-    dd($request->all());
+      $validatedData = $request->validate([
+         '_token' => 'required|string',
+         'title' => 'required|string',
+         'body' => 'required|string',
+         'user_id' => 'required|numeric|exists:users,id',
+         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+
+      dd($validatedData);
 }
 ```
 Voici ce que vous devez obtenir :  
-![illustration](../img/lara-validated.PNG)
+![illustration](../img/request.PNG)
 
 Si on arrive là, c'est que la requête est valide, il nous reste qu'a enregistré l'article :
 ```php
-$art = Article::create($request->all());
+$art = Article::create($validatedData);
 dd($art);
 ```
 Et c'est tout. L'article est mal enregistré, mais il l'est. L'image n'a pas été correctement gérer et si des erreurs se produisent, on a rien fait pour les gérer. On n'a pas non plus de message d'information ou de redirection. Cela fera partie d'une autre leçon.
