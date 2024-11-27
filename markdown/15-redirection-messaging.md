@@ -24,19 +24,19 @@ En premier, le formulaire, pour afficher les erreurs éventuelles on ajoute simp
 <button type="submit">Enregistrer</button>
 ```
 Essayez maintenant d'envoyer le formulaire en omettant un champ ou envoyez un fichier autre qu'une image, vous verrez les erreurs s'afficher automatiquement.
-Il est possible de customiser ces messages, ce sera à vous de parcourir la documentation.
+Il est possible de customiser ces messages, **ce sera à vous de parcourir la documentation**.
 
 Voyons maintenant la redirection avec message après la création d'un article :
 Il suffit d'ajouter une ligne au contrôleur  
 `ArticlesController@create`
 ```php
-Article::create($request->all());
+Article::create($validatedData);
 return redirect('/articles')->with(['success_message' => 'L\'article a été crée !']);
 ```
-Cette méthode se lit tout simplement et ne devrait pas nécessiter d'explications, si ce n'est que la méthode `with` va envoyer un message de session `success_message`, vous pouvez choisir le nom de que vous voulez pour ce message.
+Cette méthode se lit tout simplement et ne devrait pas nécessiter d'explications, si ce n'est que la méthode `with` va envoyer un message de session `success_message`, vous pouvez choisir le nom que vous voulez pour ce message.
 
-Pour afficher ce message, on crée un dossier `messages` dans le dossier `view` et on met une vue `success.blade.php`.  
-Voici ce le contenu de ce fichier, il nous permet de gérer les différents types de messages que l'on pourrait devoir envoyer :  
+Pour afficher ce message, on crée un dossier `messages` dans le dossier `view` et on met une vue `allMessages.blade.php`.  
+Voici le contenu de ce fichier, il nous permet de gérer les différents types de messages que l'on pourrait devoir envoyer :  
 ```blade
 @if (session()->has('success_message'))
     <div class="alert alert-success">
@@ -56,8 +56,8 @@ Voici ce le contenu de ce fichier, il nous permet de gérer les différents type
 ```
  Ensuite, on inclue ce fichier dans la vue principale `layouts/master.blade.php` :
  ```blade
-@include('partials.messages')
+@include('messages.allMessages')
 ```
 Le message s'affichera automatiquement le cas échéant.
 
-Plusieurs options sont disponibles pour les redirections, la documentation ou les recherches sur le web seront vos alliés.
+Plusieurs options sont disponibles pour les redirections, **la documentation ou les recherches sur le web seront vos alliés.**
