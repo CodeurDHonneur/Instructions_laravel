@@ -65,11 +65,11 @@ La méthode `patch` est utilisé pour signifier au framework qu'on va faire un m
 Les navigateurs ne comprennent pas ces méthodes. Ils comprennent uniquement `GET` et `POST`. On laisse donc cette méthode à notre formulaire, mais on va y ajouter un champ qui précisera notre intention au framework et par conséquent au serveur :  
 ```blade
 @section('content')
-    <form action="/article/{{ $article->id }}/edit" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('patch')
-        @include('partials.article-form')
-    </form>
+<form action="{{url('article/'.  $article->id  . '/edit')}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('patch')
+    @include('partials.article-form')
+</form>
 @endsection
 ```
 On est prêt à tester si tout fonctionne, testez l'action `update` du contrôleur avec la méthode `dd()`, on accepte la requête et l'article :  
