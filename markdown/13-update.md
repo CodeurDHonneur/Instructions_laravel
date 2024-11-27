@@ -45,7 +45,7 @@ On va chercher l'article exactement de la même manière que pour le lire sur un
 
 Nous avons modifié la syntaxe du fichier `partials/article-form` pour y ajouter la méthode `old()`.  
 On a passé deux arguments qui permettent de faire plusieurs choses :
-- Si on a déjà envoyé le formulaire au serveur et qu'une erreur a été retourné, le premier argument ré-affiche ce que l'utilisateur a tapé dans le champ.
+- Si on a déjà envoyé le formulaire au serveur et qu'une erreur a été retournée, le premier argument ré-affiche ce que l'utilisateur a tapé dans le champ.
 - Le deuxième vérifie si on a une variable `$article` et si `$article->title` a une valeur, le formulaire prend cette valeur, sinon, la valeur est `null`.
 ```html
 <input type="text" name="title" value="{{ old('title',  isset($article->title) ? $article->title : null) }}">
