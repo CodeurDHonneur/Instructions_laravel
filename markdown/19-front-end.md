@@ -7,7 +7,7 @@ npm install
 ```
 Les librairies sont installées, comment ça marche ?
 Dans le dossier `resources`, on a un dossier `css` et un dossier `js`.
-Commençons par le dossier `js`, deux fichiers sont présents, dans le fichier `bootstrap.js` on a un peu code 'boilerplate', la ligne 11 sert à configurer axios pour pouvoir effectuer des requêtes ajax avec le `csrf token` .  
+Commençons par le dossier `js`, deux fichiers sont présents, dans le fichier `bootstrap.js` on a un peu code 'boilerplate'. On peut y vois la configuration de axios pour pouvoir effectuer des requêtes ajax avec le `csrf token` .  
 Le fichier `app.js` servira à importer nos différents modules et c'est ce fichier qui sera compilé. Le fichier compilé se trouvera ici : `public/js/app.js`
 
 Ce sera exactement la même chose pour le CSS. 
@@ -66,6 +66,12 @@ Installons un tout nouveau paquet qui est sorti en septembre 2020 avec Laravel 8
 Pour les versions précédentes, le paquet s'appelait `laravel/ui`, très facile à prendre en main, vous pourrez vous documenter et n'aurez aucune difficulté à comprendre son fonctionnement.
 
 Installez Jetstream :
+
+**Note importante** : 
+   * Jetstream est conçu pour être installé dans de **nouvelles applications Laravel**. Si vous essayez de l'installer dans une application existante, cela peut entraîner des comportements inattendus, y compris la suppression de routes.
+   *  Avant d'exécuter la commande d'installation de Jetstream, faites une copie de sauvegarde de votre fichier `routes/web.php`. Cela vous permettra de restaurer vos routes si elles sont supprimées ou modifiées.
+   * Si vous utilisez Git ou un autre système de contrôle de version, assurez-vous de valider vos modifications avant d'exécuter des commandes qui pourraient affecter votre code. Cela vous permettra de revenir à un état précédent si nécessaire.
+
 ```bash
 composer require laravel/jetstream
 php artisan jetstream:install inertia
@@ -83,13 +89,32 @@ Nous allons vous montrer les bases afin que vous puissiez écrire votre javascri
 
 Commençons par examiner le fichier `web.php` et la route qui a été ajoutée :
 ```php
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
+//Dans les anciennes versions
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return Inertia\Inertia::render('Dashboard');
+// })->name('dashboard');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+});
 ```
-On fait appel à la librairie 'inertia' qui va s'occuper de transmettre les requêtes a Vue.js, s'il y a des données, celles-ci sont transmises automatiquement.  
-Démarrer le serveur de l'application et naviguez sur cette route.  
-On rencontre une erreur, on a oublié la commande `php artisan migrate`.
+
+**Bon à savoir** : 
+
+* `auth:sanctum` : Ce middleware protège la route en s'assurant que l'utilisateur est authentifié via Sanctum, un système d'authentification simple pour les applications SPA (Single Page Application) et les API. Si l'utilisateur n'est pas authentifié, il sera redirigé vers la page de connexion.
+* `config('jetstream.auth_session')` : Cela fait référence à une configuration de Jetstream qui détermine le type de session d'authentification à utiliser. Cela peut être session ou none, selon votre configuration dans le fichier config/jetstream.php. Cela permet à Jetstream de gérer les sessions d'authentification.
+* `verified` : Ce middleware vérifie que l'utilisateur a confirmé son adresse e-mail. Si l'utilisateur n'a pas vérifié son e-mail, il sera redirigé pour effectuer cette vérification.
+
+
+On fait appel à la librairie 'inertia' qui va s'occuper de transmettre les requêtes à Vue.js. S'il y a des données, celles-ci sont transmises automatiquement.  
+Démarrer le serveur de l'application et naviguez sur cette route.  Par le passé, on devait taper la commande `php artisan migrate` pour exécuter nos migrations mais maintenant, ce n'est plus le cas car la demande d'exécution automatique des migrations  nous est faite pendant le processus d'installation.
+
 
 Vous pouvez constater que la librairie a créé les vues et les routes `/login` et `/register`, ainsi que les routes etc etc..
 
