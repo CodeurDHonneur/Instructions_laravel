@@ -73,7 +73,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      */
-    protected function create(Request $request)
+    public function create(Request $request)
     {
         $this->validator($request->all());
 
@@ -92,11 +92,15 @@ class RegisterController extends Controller
 
 }
 ```  
-Dans ce contrôleur, on valide les données du formulaire, on enregistre l'utilisateur, on le 'login' automatiquement grâce à la façade `Auth`, enfin on envoie un message si tout s'est bien passé.
-> Notez cette deuxième méthode pour envoyer un message de session. `session()->flash()`.
-> Ainsi que la méthode `redirect()`.
+### Résumé du flux
 
-L'utilisateur est enregistré et authentifié, modifions les vues pour refléter tout ça.
+1. **Validation** : Les données envoyées par le formulaire sont validées pour s'assurer qu'elles respectent les règles (nom, email, mot de passe).
+2. **Création de l'utilisateur** : Un nouvel utilisateur est créé avec les données du formulaire.
+3. **Récupération et connexion de l'utilisateur** : L'utilisateur nouvellement créé est récupéré en utilisant son email, puis il est connecté automatiquement.
+4. **Message flash** : Un message de succès est enregistré pour être affiché à l'utilisateur.
+5. **Redirection** : Après l'inscription et la connexion, l'utilisateur est redirigé vers la page d'accueil.
+
+
 Avec blade des directives sont disponibles pour nous aider.
 `master.blade.php`
 ```blade
@@ -106,11 +110,21 @@ Avec blade des directives sont disponibles pour nous aider.
 @endguest
 ```
 Ces directives rendront les liens invisibles si l'utilisateur est authentifié.  
+
+```blade
+@auth
+<a href="/create-us">Ajoutez un article</a>
+@endauth
+```
+
+On prendra la peine de masquer la partie création d'article pour ne la rendre disponible qu'aux utilisateurs authentifiés.
+
 On crée un lien vers un profil (et une route), profil que nous n'avons pas, ainsi qu'un formulaire `logout` :
 ```blade
 @auth
     <a href="{{ route('profile') }}">Votre profil</a>
     <form action="{{ route('logout') }}" method="POST">
+    @csrf
         <input type="submit" value="Se déconnecter">
     </form>
 @endauth
@@ -119,7 +133,7 @@ Ce lien ne sera visible que si l'utilisateur est authentifié.
 ```php
 Route::get('/profile', [UserController::class, 'index'])->name('profile');
 ```
-Enfin on crée le contrôleur : 
+On crée le contrôleur : 
 ```bash
 php artisan make:controller UserController -m User
 ```
@@ -127,6 +141,10 @@ On passe l'option `-m User` pour spécifier le modèle qu'on veut gérer avec ce
 
 > **Nous n'irons pas plus loin avec le profil utilisateur : le modèle, les relations `eloquent`, le contrôleur et la route sont tous présents, il ne manque que la migration.   
 > À vous de développer ce que vous voudrez.** 
+
+
+
+
 
 ### SessionsController
 Voyons maintenant les méthodes pour les actions de `login` et `logout`.
