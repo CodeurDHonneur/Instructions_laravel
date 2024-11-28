@@ -28,13 +28,15 @@ Route::post('/logout', [SessionsController::class, 'logout'])->name('logout')->m
 // profile
 Route::get('/profile', [UserController::class, 'index'])->name('profile')->middleware('auth');
 ```
-Maintenant vous pouvez essayer d'accéder aux routes concernées, vous serez automatiquement redirigé vers la page de login si vous êtes `guest`.
 
-Si vous êtes `auth` et que vous essayez de toucher à la route `/register` ou `/login`, vous serez redirigé vers la page d'accueil.
+**Redirections Automatiques**
+Avec la configuration ci-dessus :
+  * Les utilisateurs non authentifiés (`guest`) seront redirigés vers la page de connexion lorsqu'ils essaieront d'accéder aux routes protégées.
+  * Les utilisateurs authentifiés qui essaient d'accéder aux routes `/register` ou `/login` seront redirigés vers la page d'accueil.
 
-> Vous pouvez aussi définir un middleware directement dans votre contrôleur. Pour cela, votre contrôleur doit implémenter l'interface HasMiddleware, ce qui signifie qu'il doit avoir une méthode statique middleware. Dans cette méthode, vous pouvez retourner un tableau de middleware à appliquer aux actions du contrôleur.
+> Vous pouvez appliquer des middlewares directement dans un contrôleur. Pour cela, utilisez l'interface `HasMiddleware`. 
+Voici un exemple avec `ArticlesController` :
 
-Exemple dans `ArticlesController` : 
 ```php
 use Illuminate\Routing\Controllers\HasMiddleware; 
 use Illuminate\Routing\Controllers\Middleware;
