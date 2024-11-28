@@ -50,7 +50,7 @@ Pour y remédier, on insère un morceau de code dans le dans le formulaire
 Ensuite faites `f12` pour voir l'input qui s'est ajouté dans le formulaire. C'est un token unique correspondant à la session actuelle et qui permet de s'assurer qu'on peut poster sur le site en toute sécurité.
 
 Maintenant on peut voir notre requête :  
-![illustration](../img/lara-post.PNG)
+![illustration](../img/lara-request.PNG)
 
 On peut donc commencer à valider chaque champ.
 
