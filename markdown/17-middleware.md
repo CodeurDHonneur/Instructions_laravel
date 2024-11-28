@@ -28,16 +28,27 @@ Route::post('/logout', [SessionsController::class, 'logout'])->name('logout')->m
 // profile
 Route::get('/profile', [UserController::class, 'index'])->name('profile')->middleware('auth');
 ```
-Maintenant vous pouvez essayer d'accéder aux routes concernées, vous serez automatiquement redirigé vers la page de login si vous êtes `guest` ou vers une page spécifiée dans le fichier `app/Providers/RouteServiceProvider.php` : la constante `HOME`, si vous êtes `auth`.
+Maintenant vous pouvez essayer d'accéder aux routes concernées, vous serez automatiquement redirigé vers la page de login si vous êtes `guest`.
 
 Si vous êtes `auth` et que vous essayez de toucher à la route `/register` ou `/login`, vous serez redirigé vers la page d'accueil.
 
-> On peut également créer un constructeur dans le contrôleur concerné pour utiliser un middleware.
+> Vous pouvez aussi définir un middleware directement dans votre contrôleur. Pour cela, votre contrôleur doit implémenter l'interface HasMiddleware, ce qui signifie qu'il doit avoir une méthode statique middleware. Dans cette méthode, vous pouvez retourner un tableau de middleware à appliquer aux actions du contrôleur.
+
 Exemple dans `ArticlesController` : 
 ```php
-public function __construct()
+use Illuminate\Routing\Controllers\HasMiddleware; 
+use Illuminate\Routing\Controllers\Middleware;
+
+class ArticlesController extends Controller implements HasMiddleware
 {
-    $this->middleware('auth')->except('index', 'show');
+
+   public static function middleware(): array
+    {
+        // Déclarer ici les middlewares pour ce contrôleur
+        return [
+            new Middleware('auth', except: ['index', 'show']),
+        ];
+    }
 }
 ```
-En procédant ainsi, on bloque l'accès à toutes les méthodes sauf celles qui nous permettent de lire les articles.
+En procédant ainsi, on bloque l'accès à toutes les méthodes sauf celles qui nous permettent de lire les articles. On peut se passer de la définition des middleware sur nos routes dans le `web.php`.
