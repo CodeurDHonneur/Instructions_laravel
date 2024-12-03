@@ -22,7 +22,6 @@ On en profite pour vous montrez la méthode `name('name')` qu'on enchaîne avec 
 Cette méthode est très pratique, si on change une url, on n'a pas à aller chercher et modifier dans tous les templates où on a utilisé un lien, tout est automatique.
 
 Ce sera à vous de créer les formulaires :
-- Dans un dossier `views/auth`, une vue `register.blade.php` et `login.blade.php`
 - Le formulaire `register` aura pour action `/register` :
   - Il comporte quatre champs : `name`, `email`, `password`, `password_confirmation`.
 - Le formulaire `login` aura pour action `/login` :
@@ -30,7 +29,7 @@ Ce sera à vous de créer les formulaires :
   
 N'oubliez pas de gérer les erreurs éventuelles ni les `method` dans les tags HTML `form`.
 Enfin ajoutez les liens des routes dans la vue `master` et retournez ces vues avec les contrôleurs.
-N'oubliez pas non plus d'ajouter les routes correspondantes aux méthodes et actions des formulaires. 
+N'oubliez pas non plus d'ajouter les routes qui correspondent aux méthodes et actions des formulaires. 
 
 ### RegisterController
 
@@ -139,11 +138,8 @@ php artisan make:controller UserController -m User
 ```
 On passe l'option `-m User` pour spécifier le modèle qu'on veut gérer avec ce contrôleur. Celui-ci contiendra déjà les méthodes CRUD, à vous de voir si elles vous serviront ou pas.
 
-> **Nous n'irons pas plus loin avec le profil utilisateur : le modèle, les relations `eloquent`, le contrôleur et la route sont tous présents, il ne manque que la migration.   
-> À vous de développer ce que vous voudrez.** 
-
-
-
+> Nous n'irons pas plus loin avec le profil utilisateur : le modèle, les relations `eloquent`, le contrôleur et la route sont tous présents, il ne manque que la migration.   
+> À vous de développer ce que vous voudrez. 
 
 
 ### SessionsController
