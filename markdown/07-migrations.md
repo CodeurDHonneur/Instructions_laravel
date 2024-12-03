@@ -2,7 +2,7 @@
 
 Nous allons maintenant créer plusieurs fichiers qui vont nous servir à ajouter les tables nécessaires à notre base de données.
  
- Dans le dossier `database/migrations`, des fichiers sont déjà présents, examinons le fichier `create_users`, plus particulièrement la méthode `up()` :
+ Dans le dossier `database/migrations`, des fichiers sont déjà présents. Examinons le fichier `create_users`, plus particulièrement la méthode `up()` :
 ```php
 public function up()
 {
@@ -32,7 +32,7 @@ public function up()
         });
 }
 ```
-Cette méthode créera tois tables à savoir la table : 
+Cette méthode créera les tois tables à suivantes : 
 * users, 
 * password_reset_tokens
 * sessions
@@ -69,7 +69,7 @@ Entrez la commande suivante :
 php artisan make:migration create_articles_table
 ```
 La table s'appellera `articles` mais la convention laravel est de nommer le fichier 'create_articles_table'.  
-**Il est important de respecter cette convention, laravel se servant des noms de fichiers pour automatiser les tâches**.  
+**Il est important de respecter cette convention car Laravel se sert des noms de fichiers pour automatiser les tâches**.  
 Un fichier est créé dans le dossier `database/migrations`, et le squelette est déjà en place, il ne reste qu'à décrire les champs qu'on veut.  
 
 ```php
@@ -161,7 +161,7 @@ public function up()
     });
 }
 ```
-Rien de compliqué, on effacera les commentaires si l'utilisateur efface son compte ou si l'article est supprimé.  
+Rien de compliqué ! On effacera les commentaires si l'utilisateur efface son compte ou si l'article est supprimé.  
 On modifie maintenant le fichier `create_users` pour y ajouter un booléen `admin` dont le défaut sera `false` :
  ```php
 public function up()
@@ -176,19 +176,15 @@ On peut maintenant taper la commande suivante :
 ```bash
 php artisan migrate
 ```
-On constate que la mise à jour de notre base de données n'a concerné que les tables `comments` et `articles`. 
+En considérant la table `user`, on constate que la mise à jour de notre base de données n'a concerné que les tables `comments` et `articles`. 
 
- 
-
-Pour prendre en compte les modifications effecutées sur notre table, on va taper la commande suivante : 
+Pour prendre en compte les modifications effecutées sur notre table déjà existante, on va taper la commande suivante : 
 
 ```bash
 php artisan migrate:fresh
 ```
 
-En cas d'erreurs , corrigez-les dans vos fichiers de migrations, puis tapez la commande ci-dessus.
-
-Cette commande effacera toutes les tables, et recommencera tout depuis le début.
+En cas d'erreurs, corrigez-les dans vos fichiers de migrations, puis retapez la commande ci-dessus.
 
 Voici ce que vous devez obtenir :
 
@@ -196,7 +192,7 @@ Voici ce que vous devez obtenir :
 
 
 _Note sur les clés étrangères :_
-Une autre convention laravel est de nommer les clés étrangères `table_id`, ou `table` est nom de la table au singulier.  
+Une autre convention laravel est de nommer les clés étrangères `table_id`, où `table` est le nom de la table au singulier.  
 Quand on verra les modèles et les relations `eloquent`, on verra que laravel recherche automatiquement les noms sous cette forme. 
 
 #### Factory
@@ -233,7 +229,7 @@ public function definition()
     ];
 }
 ```
-On garde les choses simples pour l'instant et on code l'`user_id` en 'dur'. 
+On garde les choses simples pour l'instant et on code `user_id` en 'dur'. 
 
 Maintenant, les commentaires :
 ```php
@@ -246,7 +242,7 @@ public function definition()
     ];
 }
 ```
-Même chose pour les commentaires, on assigne la même id pour l'instant pour les `user_id` et `article_id`.
+Même chose pour les commentaires, on assigne le même `id` pour l'instant pour les `user_id` et `article_id`.
 Ce code ne fonctionnera pas en l'état, on a besoin de voir d'autres notions avant.
 
 
