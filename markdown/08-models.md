@@ -16,9 +16,9 @@ php artisan make:model Comment
 Les modèles ont été créés directement dans le dossier `app/Model` par défaut grâce ou à cause de l'insistance de la communauté. Jusqu'à laravel 8, les modèles étaient dans le dossier `app/` par défaut.
 
 Nous avons déjà modifié le modèle `User`, modifions à présent `Article` et `Comment`.  
-Pour commencer, nous allons ajouter simplement du code qui nous permettra d'enregistrer des données dans la BDD, ensuite nous verrons les relations `Eloquent` simples.
+Pour commencer, nous allons ajouter simplement du code qui nous permettra d'enregistrer des données dans la BDD. Ensuite, nous verrons les relations `Eloquent` simples.
 
-On ajoute la propriété `$fillable`, qui spécifiera au framework de nous laisser insérer des valeurs dans les champs correspondant. Ces champs correspondent à nos champs de BDD, attention donc à ne pas faire d'erreur en les écrivant.
+On ajoute la propriété `$fillable`, qui spécifiera au framework de nous laisser insérer des valeurs dans les champs correspondants. Ces champs correspondent à nos champs de BDD. Attention donc à ne pas faire d'erreur en les écrivant.
 ```php
 class Article extends Model
 {
@@ -33,7 +33,7 @@ class Comment extends Model
 }
 ```
 On est fin prêt à insérer des données. Reprenons nos fichiers `ArticleFactory` et `CommentFactory`.
-On avait codé certains champs en 'dur', rendons les dynamiques.
+On avait codé certains champs en 'dur', rendons-les dynamiques.
 Nous allons créer des utilisateurs avec des articles et des commentaires associés. Voici les `factories` modifiées :
 Ne vous contentez pas de copier-coller, **lisez-les**.  
 `ArticlesFactory` 
@@ -112,7 +112,7 @@ class CommentFactory extends Factory
     }
 }
 ```
-Nous avons modifié ces fichiers pour pouvoir utiliser les modèles que nous avons créé, les fonctions qui assignent les `ID` iront chercher des resources existantes en BDD et les assigneront automatiquement selon nos spécifications.
+Nous avons modifié ces fichiers pour pouvoir utiliser les modèles que nous avons créé. Les fonctions qui assignent les `ID` iront chercher des resources existantes en BDD et les assigneront automatiquement selon nos spécifications.
 
 #### Database Seeder
 Le `seeder` est l'outil qui va nous permettre d'ajouter des données automatiquement.
@@ -194,17 +194,12 @@ Nous aurons donc :
 
 namespace Database\Factories;
 
+//ajout
 use Alirezasedghi\LaravelImageFaker\ImageFaker;
 use Alirezasedghi\LaravelImageFaker\Services\Picsum;
-use App\Models\Article;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
- */
 class ArticleFactory extends Factory
 {
     /**
@@ -222,6 +217,7 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
+        // ajout
         $imageFaker = new ImageFaker(new Picsum());
         
         return [
@@ -231,7 +227,8 @@ class ArticleFactory extends Factory
             'user_id' => function () {
                 return User::inRandomOrder()->first()->id;
             },
-            'image' => $imageFaker->image(public_path("images")) 
+            // 'image' => fake()->image('public/images'), //ancienne ligne
+            'image' => $imageFaker->image(public_path("images")) //modification
            
         ];
     }
@@ -246,7 +243,7 @@ Vérifions tous ça
 php artisan tinker
 ```
 ```bash
-App\Models\Article::first();
+Article::factory()->create();
 ```
 Vous devriez avoir un résultat semblable à ce qui suit :
 
