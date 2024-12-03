@@ -15,6 +15,10 @@ La première pour télécharger une librairie dans le cadre d'un projet spécifi
 ```bash
 composer require nom/librairie
 ```
+* **Signification des termes :**
+   * **nom** : C'est le nom du fournisseur (ou de l'organisation) qui développe ou maintient la bibliothèque. Par exemple, cela pourrait être un nom de développeur, une entreprise ou une communauté. Exemple : `laravel`, `symfony`, `guzzlehttp`.
+
+   * **librairie** : C'est le nom spécifique de la bibliothèque (ou package) que vous souhaitez installer. C'est généralement une fonctionnalité ou un ensemble de fonctionnalités. Exemple : `framework`, `http-client`, `psr7`.
 
 La deuxième pour installer une librairie globalement sur notre OS :
 ```bash
