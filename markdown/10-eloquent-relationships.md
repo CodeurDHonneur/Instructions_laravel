@@ -1,13 +1,13 @@
 # Les relations de base : Eloquent relationships
 Comment faire pour joindre les tables avec `eloquent` ?  
-On a dans notre BDD des tables avec des clés étrangères, avec laravel, il suffit de se poser une question simple pour savoir comment charger un utilisateur avec ses articles, ou un article avec ses commentaires etc etc..  
+On a dans notre BDD des tables avec des clés étrangères. Avec laravel, il suffit de se poser une question simple pour savoir comment charger un utilisateur avec ses articles, ou un article avec ses commentaires etc..  
 ---
 Un utilisateur peut-il écrire un ou plusieurs articles ? 
 Un article peut-il comporter un ou plusieurs commentaires ?
 #### belongsTo / hasMany
 Gardons les choses simples pour l'instant et partons du principe qu'un utilisateur peut écrire plusieurs articles et qu'un article ne peut avoir qu'un auteur.
 Même chose pour les commentaires.
-Il nous suffit de modifier notre modèles pour mettre laravel au courant des relations dans notre BDD, le reste sera fait automatiqiuement.  
+Il nous suffit de modifier notre modèles pour mettre laravel au courant des relations dans notre BDD. Le reste sera fait automatiqiuement.  
 Reprenons nos modèles et modifions-les :
 
 `User`
@@ -50,7 +50,7 @@ public function article()
     return $this->belongsTo(Article::class);
 }
 ```
-Comme on a respecté les conventions laravel sur les clés étrangères, ou la clé est nommée selon le nom de la table référencée au singulier avec underscore et id : `article_id`, on a rien d'autre à faire.  
+Comme on a respecté les conventions laravel sur les clés étrangères, où la clé est nommée selon le nom de la table référencée au singulier avec underscore et id : `article_id`, on a rien d'autre à faire.  
 Si vous voulez nommer vos clés étrangères différemment, il faudra le spécifier dans les méthodes `belongsTo` et `hasMany()`. La documentation est là pour ça.
 
 ##### Testons le résultat de ces méthodes dans `tinker` :
