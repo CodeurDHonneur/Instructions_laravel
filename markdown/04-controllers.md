@@ -1,6 +1,6 @@
 # Les contrôleurs
 
-Jusqu'à maintenant, nous avons mis dans nos routes les fonctions permettant de nous afficher les pages.  
+Jusqu'à maintenant, nous avons mis dans nos routes les fonctions qui nous permettent d'afficher les pages.  
 Si on a plusieurs pages statiques, il nous faudra donc autant de routes avec callback, et le fichier va devenir très vite pollué.  
 Nous travaillons avec un framework MVC, profitons-en pour modifier la structure de notre petite application.  
 Utilisons les contrôleurs, qui analyserons nos requêtes et articuleront l'application comme un chef d'orchestre.  
@@ -10,7 +10,8 @@ php artisan make:controller PagesController
 ```
 Nous venons de créer un contrôleur nommé `PagesController`, dans le dossier `app/Http/Controllers`  
 Dans ce fichier, laravel a déjà mis la structure de base du contrôleur.  
-On peut tout à fait créer ce contrôleur à la main, si vous faites ça, n'oubliez pas de taper ensuite la commande suivante :
+On peut tout à fait créer ce contrôleur à la main. Si vous faites cela, vous devrez taper la commande suivante :
+
 ```bash
 composer dump-autoload
 ```  
@@ -31,7 +32,7 @@ class PagesController extends Controller
     }
 }
 ```
-Ce code se passe de commentaires, la méthode `view()` ira chercher automatiquement les fichiers  
+Ce code se passe de commentaires. La méthode `view()` ira chercher automatiquement les fichiers.  
 
 Dans le fichier `web.php`, modifions les routes pour utiliser les contrôleurs :
 Dans ce cours, nous allons utiliser laravel 11, mais nous avons choisi de vous montrer également la syntaxe pour les applications tournant sous les versions de laravel avant celle-ci.  
