@@ -37,7 +37,7 @@ On va chercher l'article exactement de la même manière que pour le lire sur un
 @endsection
 
 @section('content')
-    <form action="article/{{ $article->id }}/edit" method="POST" enctype="multipart/form-data">
+    <form action="{{url('article/'.  $article->id  . '/edit')}}" method="POST" enctype="multipart/form-data">
         @include('partials.article-form')
     </form>
 @endsection

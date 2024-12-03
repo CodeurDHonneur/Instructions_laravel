@@ -79,7 +79,7 @@ public function store(Request $request)
 }
 ```
 Voici ce que vous devez obtenir :  
-![illustration](../img/request.PNG)
+![illustration](../img/lara-validated.PNG)
 
 Si on arrive là, c'est que la requête est valide, il nous reste qu'a enregistré l'article :
 ```php

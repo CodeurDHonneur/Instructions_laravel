@@ -1,7 +1,8 @@
 # Le fichier .env
 
-Chaque installation de laravel contient un fichier `.env` où on définit des variables d'environnement et de configuration du framework.  
-**!! Ce fichier ne devra jamais être inclus dans vos repos !!** en raison des informations sensible qu'il peut contenir.  
+Chaque installation de laravel contient un fichier `.env` où on définit des variables d'environnement et de configuration du framework. 
+
+**!! Ce fichier ne devra jamais être inclus dans vos repos !!** en raison des informations sensibles qu'il peut contenir.  
 Ci-dessous, la reproduction d'une partie de ce fichier avec des commentaires explicatifs :
 ```
 APP_NAME=Laravel # Le nom de l'application
@@ -22,24 +23,24 @@ DB_PASSWORD=
 
 La clé `APP_KEY` est essentielle pour la sécurité de votre application Laravel. Elle est utilisée pour chiffrer des données sensibles et garantir que les informations de votre application sont protégées contre les accès non autorisés. Il est crucial de la garder secrète et de ne jamais la partager publiquement. 
 
-Lorsque vous clonerez une application laravel, assurez-vous que le fichier `.env.example` est présent et renommer le `.env`, puis exécuter la commande suivante pour générer la clé de l'application, sans celle-ci, rien ne fonctionnera
+Lorsque vous clonerez une application laravel, assurez-vous que le fichier `.env.example` est présent et renommer le `.env`, puis exécuter la commande suivante pour générer la clé de l'application. Sans celle-ci, rien ne fonctionnera
 ```bash
 php artisan key:generate
 ```
 
 #### En cas de problèmes avec un application clonée :
-Parfois, mais pas souvent 🤷, les développeurs commettent des erreurs et pendant le développement, ils mettent leur configuration en cache et on se retrouve avec sur l'application qu'on a cloné, résultat rien ne marche sans qu'on ne comprenne bien pourquoi.
+Parfois, mais pas souvent 🤷, les développeurs commettent des erreurs et pendant le développement, ils mettent leur configuration en cache et on se retrouve avec cela sur l'application qu'on a cloné. Résultat, rien ne marche sans qu'on ne comprenne bien pourquoi.
 Les commandes suivantes pourront vous aider :
 ```bash
 php artisan cache:clear
 php artisan config:clear
 ```
-Un problème assez courant aussi vient des permissions sur les fichiers et dossiers, dans ce cas, on remet les permissions de laravel par défaut :
+Un problème assez courant aussi vient des permissions sur les fichiers et dossiers. Dans ce cas, on remet les permissions de laravel par défaut :
 ```bash
 sudo find /path/to/your/laravel-directory -type f -exec chmod 644 {} \; # permissions des fichiers
 sudo find /path/to/your/laravel-directory -type d -exec chmod 755 {} \; # permissions des dossiers
 ```
-Dans le cas ou vous avez configuré un serveur apache et que vous en vous servez pas du serveur laravel, il vous faudra donner accès en écriture au serveur :
+Dans le cas où vous avez configuré un serveur apache et que vous ne vous servez pas du serveur laravel, il vous faudra donner accès en écriture au serveur :
 ```bash
 sudo chown -R my-user:www-data /path/to/your/laravel-directory
 sudo chgrp -R www-data storage bootstrap/cache

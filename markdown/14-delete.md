@@ -34,3 +34,4 @@ public function delete(Article $article)
 Et c'est tout...
 La facilité avec laquelle on peut réaliser une application CRUD est admirable.
 Dans la leçon suivante, on modifiera nos contrôleurs pour rediriger l'utilisateur et envoyer un message de succès ou d'erreur si nécessaire.
+ 

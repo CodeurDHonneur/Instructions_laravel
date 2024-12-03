@@ -32,7 +32,7 @@ Pour commencer à travailler, on efface tout ce qu'il y a dedans, on garde uniqu
     </body>
 </html>
 ```
-On peut voir dans ce fichier une syntaxe 'moustache' pour la valeur du tag `title`, c'est ce qui remplace le PHP dans blade et qui est compilé par la suite en PHP. Plus de détails sur ces fonctionnalités plus tard.
+On peut voir dans ce fichier une syntaxe 'moustache' pour la valeur de l'attribut `lang` du tag `html`, c'est ce qui remplace le PHP dans blade et qui est compilé par la suite en PHP. Plus de détails sur ces fonctionnalités plus tard.
 
 **Pour travailler efficacement, il est nécessaire de bien s'organiser.**
 Laravel possède une communauté de développeurs immense et des pratiques standards sont apparues au fil du temps.  
@@ -84,7 +84,7 @@ Pour corriger ça, on modifie le fichier `contact` :
 @endsection
 ```
 La directive `@section` va nous permettre d'injecter le code où on le veut sur la page.
-Cette directive prend un ou plusieurs arguments, pour l'instant, on lui a juste donner le nom `content`
+Cette directive prend un ou plusieurs arguments. Pour l'instant, on lui a juste donné le nom `content`
 On doit aussi modifier le fichier `master` :
 ```blade
 <h1>Laravel 101</h1>

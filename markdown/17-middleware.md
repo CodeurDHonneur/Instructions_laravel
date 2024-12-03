@@ -3,7 +3,7 @@
 Un middleware est une classe qui va se situer entre une route et un contrôleur, qui va intercepter la requête et effectuer des vérifications.
 
 
-Commençons par deux middlewares très utilisé et qui nous sont fournis.
+Commençons par deux middlewares très utilisés et qui nous sont fournis.
 Nous écrirons un middleware plus tard.
  
  Commençons par protéger les routes qu'on ne veut pas rendre accessible à tous le monde.
