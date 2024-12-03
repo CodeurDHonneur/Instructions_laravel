@@ -1,7 +1,7 @@
 # Routes 201
 ### Avant de débuter
 Nous avons modifié la structure du dossier `view` pour correspondre à ce qu'on est en train de faire.
-Le nommage des fichiers était loin d'être idéal, voici la structure actuelle, modifiez également la vôtre :
+Le nommage des fichiers était loin d'être idéal. voici la structure actuelle, modifiez également la vôtre :
 
 ![illustration](../img/lara-structure.PNG)
 
@@ -14,7 +14,7 @@ Le lien :
 <a href="/article/{{ $article->id }}">Article</a>   
 ```
 
-Pour la route, encore une fois, tout est très simple, on passe l'ID entre des accolades simple :
+Pour la route, encore une fois, tout est très simple. On passe l'ID entre des accolades simple :
 ```php
 Route::get('/article/{id}', [ArticlesController::class, 'show']);
 ```
@@ -35,7 +35,7 @@ On crée un fichier `show.blade.php` dans le dossier `articles` et on affiche l'
 Ceci est une façon de faire, mais on peut faire encore plus simple.
 
 #### Route Model Binding
-Le framework contient une aide précieuse ce qu'on appelle `route model binding`, à partir de l'ID passée en paramètres, on peut obtenir automatiquement la resource souhaitée. 
+Le framework contient une aide précieuse ce qu'on appelle `route model binding`. A partir de l'ID passée en paramètres, on peut obtenir automatiquement la resource souhaitée. 
 Pour cela, il suffit de modifier la route et la méthode `show()` du contrôleur :
 ```php
 Route::get('article/{article}', [ArticlesController::class, 'show']);
@@ -93,7 +93,7 @@ Ces requêtes se produisent dans la vue quand on va chercher les commentaires ai
 
 On modifie donc liens, route et articles pour effectuer un minimum de requêtes :
 `ArticlesController`
-On crée une sous-requête avec `eloquent`, la méthode `with()` accepte un tableau avec un callback :
+On crée une sous-requête avec `eloquent`, la méthode `with()` acceptant un tableau avec un callback :
 ```php
 public function show($id)
 {
@@ -109,7 +109,7 @@ public function show($id)
 
 1. **Article::with('user') :**
 
-  * `with('user')` : Cela indique que nous chargeons la relation user associée à l'article.
+  * `with('user')` : Cela indique que nous chargeons la relation `user` associée à l'article.
   * `user` est une relation définie dans le modèle `Article` qui associe chaque article à un utilisateur (l'auteur de l'article). Par défaut, cela chargera la colonne `user_id` dans la table articles pour trouver l'utilisateur correspondant dans la table `users`. Ce type de relation est défini par une méthode belongsTo dans le modèle `Article`.
   * En utilisant `with('user')`, vous effectuez ce qu'on appelle **l'éager loading** (chargement anticipé). Cela signifie que l'utilisateur lié à l'article sera récupéré en même temps que l'article, ce qui permet d'éviter des requêtes supplémentaires lorsque vous accédez à la relation `user` par la suite.          
 
@@ -161,6 +161,4 @@ $article = Article::with(['comments' => function ($query) {
     $query->with('user');
 }])->findOrFail($id);
 ```
-```php
-//A compléter 
-```
+Maintenant votre deuxième exercice.
