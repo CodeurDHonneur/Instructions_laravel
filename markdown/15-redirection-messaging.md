@@ -60,4 +60,4 @@ Voici le contenu de ce fichier, il nous permet de gérer les différents types d
 ```
 Le message s'affichera automatiquement le cas échéant.
 
-Plusieurs options sont disponibles pour les redirections. Pour en savoir plus,  **la documentation ou les recherches sur le web seront vos alliés.**
+Plusieurs options sont disponibles pour les redirections. Pour en savoir plus,  **la documentation ou les recherches sur le web seront vos alliées.**
